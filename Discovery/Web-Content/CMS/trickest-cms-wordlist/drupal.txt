@@ -653,6 +653,7 @@ core/profiles/tests/testing_multilingual/testing_multilingual.info.yml
 core/profiles/tests/profile_install_requirements/src/Install/Requirements/ProfileInstallRequirementsRequirements.php
 core/profiles/tests/profile_install_requirements/profile_install_requirements.info.yml
 core/profiles/tests/testing_install_profile_dependencies/testing_install_profile_dependencies.info.yml
+core/profiles/tests/testing_auto_uninstall/testing_auto_uninstall.info.yml
 core/profiles/tests/testing_requirements/src/Install/Requirements/TestingRequirementsRequirements.php
 core/profiles/tests/testing_requirements/testing_requirements.info.yml
 core/profiles/tests/testing_multilingual_with_english/testing_multilingual_with_english.info.yml
@@ -687,6 +688,8 @@ core/profiles/tests/nightwatch_a11y_testing/config/install/field.field.node.arti
 core/profiles/tests/nightwatch_a11y_testing/config/install/user.role.administrator.yml
 core/profiles/tests/nightwatch_a11y_testing/config/install/taxonomy.vocabulary.tags.yml
 core/profiles/tests/nightwatch_a11y_testing/nightwatch_a11y_testing.info.yml
+core/profiles/tests/testing_auto_uninstall_has_dependencies/testing_auto_uninstall_has_dependencies.info.yml
+core/profiles/tests/testing_auto_uninstall_has_dependencies/modules/testing_in_use_dependency/testing_in_use_dependency.info.yml
 core/profiles/tests/testing_config_import/testing_config_import_module/testing_config_import_module.info.yml
 core/profiles/tests/testing_config_import/testing_config_import.info.yml
 core/profiles/tests/testing_config_import/testing_config_import_theme/testing_config_import_theme.info.yml
@@ -773,6 +776,7 @@ core/config/install/core.menu.static_menu_link_overrides.yml
 core/.cspell.json
 core/.deprecation-ignore.txt
 core/COPYRIGHT.txt
+core/CLAUDE.md
 core/phpstan-partial.neon
 core/phpstan.neon.dist
 core/INSTALL.sqlite.txt
@@ -1405,7 +1409,6 @@ core/lib/Drupal/Core/Installer/ExtensionListTrait.php
 core/lib/Drupal/Core/Installer/Form/SiteSettingsForm.php
 core/lib/Drupal/Core/Installer/Form/SelectLanguageForm.php
 core/lib/Drupal/Core/Installer/Form/SiteConfigureForm.php
-core/lib/Drupal/Core/Installer/Form/SelectProfileForm.php
 core/lib/Drupal/Core/Installer/InstallerModuleExtensionList.php
 core/lib/Drupal/Core/Installer/InstallerKernel.php
 core/lib/Drupal/Core/Installer/InstallerThemeExtensionList.php
@@ -1493,6 +1496,7 @@ core/lib/Drupal/Core/Database/Query/InsertTrait.php
 core/lib/Drupal/Core/Database/Query/Insert.php
 core/lib/Drupal/Core/Database/Query/PlaceholderInterface.php
 core/lib/Drupal/Core/Database/Query/PagerSelectExtender.php
+core/lib/Drupal/Core/Database/Query/QueryExecutionVoidInterface.php
 core/lib/Drupal/Core/Database/Query/TableSortExtender.php
 core/lib/Drupal/Core/Database/Query/NoUniqueFieldException.php
 core/lib/Drupal/Core/Database/ReplicaKillSwitch.php
@@ -3473,6 +3477,7 @@ core/.yarnrc.yml
 core/.prettierignore
 core/INSTALL.mysql.txt
 core/phpcs.xml.dist
+core/AGENTS.md
 core/.phpstan-baseline.php
 core/misc/logo/LICENSE.txt
 core/misc/logo/drupal-logo.svg
@@ -4882,9 +4887,11 @@ core/modules/locale/src/LocaleServiceProvider.php
 core/modules/locale/src/LocaleTranslationSource.php
 core/modules/locale/src/LocaleProjectStorage.php
 core/modules/locale/src/StringStorageInterface.php
+core/modules/locale/src/Hook/LocaleFormHooks.php
 core/modules/locale/src/Hook/LocaleThemeHooks.php
 core/modules/locale/src/Hook/LocaleCronHooks.php
 core/modules/locale/src/Hook/LocaleRequirements.php
+core/modules/locale/src/Hook/LocaleExtensionHooks.php
 core/modules/locale/src/Hook/LocaleHooks.php
 core/modules/locale/src/LocaleDefaultOptions.php
 core/modules/locale/src/LocaleProjectRepository.php
@@ -7223,17 +7230,6 @@ core/modules/path/tests/modules/path_test_node_grants/path_test_node_grants.info
 core/modules/path/tests/modules/path_test_misc/path_test_misc.info.yml
 core/modules/path/tests/modules/path_test_misc/src/Hook/PathTestMiscHooks.php
 core/modules/path/path.install
-core/modules/telephone/telephone.info.yml
-core/modules/telephone/config/schema/telephone.schema.yml
-core/modules/telephone/src/Plugin/Field/FieldWidget/TelephoneDefaultWidget.php
-core/modules/telephone/src/Plugin/Field/FieldFormatter/TelephoneLinkFormatter.php
-core/modules/telephone/src/Plugin/Field/FieldType/TelephoneItem.php
-core/modules/telephone/src/Hook/TelephoneHooks.php
-core/modules/telephone/telephone.services.yml
-core/modules/telephone/tests/src/Functional/TelephoneFieldTest.php
-core/modules/telephone/tests/src/Functional/GenericTest.php
-core/modules/telephone/tests/src/Kernel/TelephoneItemTest.php
-core/modules/telephone/telephone.libraries.yml
 core/modules/filter/help_topics/filter.overview.html.twig
 core/modules/filter/filter.permissions.yml
 core/modules/filter/config/schema/filter.schema.yml
@@ -8217,6 +8213,7 @@ core/modules/user/src/EventSubscriber/AccessDeniedSubscriber.php
 core/modules/user/src/EventSubscriber/UserFloodSubscriber.php
 core/modules/user/src/UserInterface.php
 core/modules/user/src/UserData.php
+core/modules/user/src/Command/LoginCommand.php
 core/modules/user/src/Form/UserPermissionsForm.php
 core/modules/user/src/Form/EntityPermissionsForm.php
 core/modules/user/src/Form/UserMultipleCancelConfirm.php
@@ -8320,6 +8317,7 @@ core/modules/user/tests/src/Functional/UserLanguageCreationTest.php
 core/modules/user/tests/src/Functional/UserLogoutTest.php
 core/modules/user/tests/src/Functional/UserRolesAssignmentTest.php
 core/modules/user/tests/src/Functional/UserRegistrationRestTest.php
+core/modules/user/tests/src/Functional/Command/LoginCommandTest.php
 core/modules/user/tests/src/Functional/UserCancelTest.php
 core/modules/user/tests/src/Functional/UserCreateFailMailTest.php
 core/modules/user/tests/src/Functional/UserRoleAdminTest.php
@@ -8368,6 +8366,7 @@ core/modules/user/tests/src/Kernel/UserAdminSettingsFormTest.php
 core/modules/user/tests/src/Kernel/UserAccountFormFieldsTest.php
 core/modules/user/tests/src/Kernel/UserRoleEntityTest.php
 core/modules/user/tests/src/Kernel/UserDeleteTest.php
+core/modules/user/tests/src/Kernel/Command/LoginCommandTest.php
 core/modules/user/tests/src/Kernel/UserRoleDeleteTest.php
 core/modules/user/tests/src/Kernel/Condition/UserRoleConditionTest.php
 core/modules/user/tests/src/Kernel/Controller/UserControllerTest.php
@@ -11237,6 +11236,8 @@ core/modules/system/tests/modules/router_test_directory/src/Access/DefinedTestAc
 core/modules/system/tests/modules/router_test_directory/src/Access/TestAccessCheck.php
 core/modules/system/tests/modules/router_test_directory/src/TestContent.php
 core/modules/system/tests/modules/router_test_directory/src/RouterTestServiceProvider.php
+core/modules/system/tests/modules/router_test_directory/src/Form/TestRouteAttributeForm.php
+core/modules/system/tests/modules/router_test_directory/src/Form/TestInvalidFormNamespaceController.php
 core/modules/system/tests/modules/router_test_directory/src/RouteTestSubscriber.php
 core/modules/system/tests/modules/router_test_directory/src/RouterTestEarlyExceptionSubscriber.php
 core/modules/system/tests/modules/router_test_directory/src/Controller/TestClassAttribute.php
@@ -12445,6 +12446,7 @@ core/modules/content_translation/src/Hook/ContentTranslationFormHooks.php
 core/modules/content_translation/content_translation.libraries.yml
 core/modules/content_translation/js/content_translation.admin.js
 core/modules/content_translation/content_translation.services.yml
+core/modules/content_translation/content_translation.post_update.php
 core/modules/content_translation/tests/src/Unit/Menu/ContentTranslationLocalTasksTest.php
 core/modules/content_translation/tests/src/Unit/Access/ContentTranslationManageAccessCheckTest.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationLanguageChangeTest.php
@@ -12454,6 +12456,7 @@ core/modules/content_translation/tests/src/Functional/Views/TranslationLinkTest.
 core/modules/content_translation/tests/src/Functional/Views/ContentTranslationViewsUITest.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationUntranslatableFieldsTest.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationEntityBundleUITest.php
+core/modules/content_translation/tests/src/Functional/ContentLanguageBaseFieldSyncWidgetTest.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationSyncImageTest.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationPendingRevisionTestBase.php
 core/modules/content_translation/tests/src/Functional/ContentTranslationOperationsTest.php
@@ -14156,6 +14159,7 @@ core/tests/Drupal/Tests/Core/StackMiddleware/AjaxPageStateTest.php
 core/tests/Drupal/Tests/Core/StackMiddleware/NegotiationMiddlewareTest.php
 core/tests/Drupal/Tests/Core/Asset/CssOptimizerUnitTest.php
 core/tests/Drupal/Tests/Core/Asset/LibraryDiscoveryTest.php
+core/tests/Drupal/Tests/Core/Asset/JsCollectionGrouperUnitTest.php
 core/tests/Drupal/Tests/Core/Asset/CssCollectionRendererUnitTest.php
 core/tests/Drupal/Tests/Core/Asset/LibraryDiscoveryCollectorTest.php
 core/tests/Drupal/Tests/Core/Asset/JsOptimizerUnitTest.php
@@ -14601,6 +14605,7 @@ core/tests/Drupal/Tests/Core/Hook/HookCollectorPassTest.php
 core/tests/Drupal/Tests/Core/Hook/ImplementationListTest.php
 core/tests/Drupal/Tests/Core/Cron/CronSuspendQueueDelayTest.php
 core/tests/Drupal/Tests/Core/Datetime/TimeZoneFormHelperTest.php
+core/tests/Drupal/Tests/Core/Datetime/Element/DateElementBaseTest.php
 core/tests/Drupal/Tests/Core/Datetime/DateTest.php
 core/tests/Drupal/Tests/Core/Datetime/DrupalDateTimeTest.php
 core/tests/Drupal/Tests/Core/Datetime/DateHelperTest.php
@@ -15003,6 +15008,7 @@ core/tests/Drupal/FunctionalTests/Installer/InstallerEmptySettingsTest.php
 core/tests/Drupal/FunctionalTests/Installer/DistributionProfileTranslationTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerExistingDatabaseSettingsTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerExistingConfigExistingSettingsTest.php
+core/tests/Drupal/FunctionalTests/Installer/ProfileAutoUninstallFailureTest.php
 core/tests/Drupal/FunctionalTests/Installer/MinimalInstallerTest.php
 core/tests/Drupal/FunctionalTests/Installer/DistributionProfileTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerTestBase.php
@@ -15042,6 +15048,7 @@ core/tests/Drupal/FunctionalTests/Installer/InstallerExistingConfigSyncDirectory
 core/tests/Drupal/FunctionalTests/Installer/InstallerTranslationMultipleLanguageTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerExistingBrokenDatabaseSettingsTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerBrokenDatabaseCredentialsTest.php
+core/tests/Drupal/FunctionalTests/Installer/ProfileAutoUninstallTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerBrokenDatabasePortSettingsTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerProfileRequirementsTest.php
 core/tests/Drupal/FunctionalTests/Installer/InstallerExistingConfigNoConfigTest.php
